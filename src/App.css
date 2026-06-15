@@ -1,38 +1,1184 @@
-.App {
+/* ========================================
+   LAYOUT & CONTAINER STYLES
+   ======================================== */
+
+.panda-page {
+  min-height: 100vh;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.panda-desktop-shell {
+  display: block;
+}
+
+.panda-mobile-shell {
+  display: none;
+}
+
+.panda-scale-wrap {
+  position: relative;
+  width: min(100vw, 177.778vh);
+  height: min(56.25vw, 100vh);
+  overflow: hidden;
+  background: #fff;
+}
+
+.panda-desktop {
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background: #fff;
+  transform-origin: top left;
+  font-family: 'Ranchers', cursive;
+  color: #000;
+}
+
+.desktop-border {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  width: 1860px;
+  height: 1020px;
+  border: 3px solid #000;
+}
+
+.halftone {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.95;
+  background-image: radial-gradient(#000 0 36%, transparent 38%);
+  background-size: 18px 18px;
+  z-index: 0;
+}
+
+.halftone-left {
+  left: 52px;
+  top: 218px;
+  width: 210px;
+  height: 234px;
+  transform: rotate(-21deg);
+}
+
+.halftone-center {
+  left: 1200px;
+  top: 772px;
+  width: 382px;
+  height: 140px;
+  transform: rotate(6deg);
+}
+
+.halftone-right {
+  right: 86px;
+  bottom: 28px;
+  width: 230px;
+  height: 210px;
+  transform: rotate(10deg);
+}
+
+/* ========================================
+   TYPOGRAPHY & TITLES
+   ======================================== */
+
+.title {
+  font-family: 'Rampart One', serif;
+  font-size: 80px;
+  letter-spacing: 0;
+  line-height: 1.2;
+  color: #2a0e14;
+  margin: 0;
+}
+
+/* ========================================
+   ABOUT SECTION
+   ======================================== */
+
+.about-box {
+  position: absolute;
+  left: 6px;
+  top: 9px;
+  width: 792.7070922851562px;
+  height: 430.2578125px;
+  z-index: 5;
+}
+
+.about-panda-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 253px;
+  height: 197.46px;
+  object-fit: contain;
+  z-index: 10;
+  display: block;
+}
+
+.about-pow {
+  position: absolute;
+  left: 610px;
+  top: 32px;
+  width: 190.7070770263672px;
+  height: 177px;
+  z-index: 2;
+}
+
+.about-title {
+  position: absolute;
+  left: 253px;
+  top: 70px;
+  width: 332px;
+  height: 96px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  font-family: 'Jacques Francois Shadow', serif;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 1.2;
+  letter-spacing: -0.1em;
+  text-transform: capitalize;
+  color: #2a0e14;
+  margin: 0;
+}
+
+/* removed duplicate desktop section block; the canonical section styles are defined later in the file */
+
+.about-text-bg {
+  position: absolute;
+  left: 47px;
+  top: 135px;
+  width: 739.6038208007812px;
+  height: 310px;
+  opacity: 1;
+  transform: none;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.about-text-panel {
+  position: absolute;
+  left: 130px;
+  top: 215px;
+  width: 560px;
+  height: 193px;
+  padding: 12px 18px 10px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.about-text-panel p {
+  margin: 0 0 0px;
+  font-family: 'Ranchers', cursive;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: capitalize;
+  font-weight: 400;
+  font-style: normal;
+  max-width: 575px;
+}
+
+.about-text-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.about-text-panel p.about-text-panel-secondary {
+  margin-bottom: 12px;
+  max-width: 440px;
+}
+
+.panda-barrel {
+  position: absolute;
+  right: 651px;
+  top: 54px;
+  width: 537px;
+  height: 369px;
+  z-index: -1;
+}
+
+/* ========================================
+   TOKENOMICS SECTION
+   ======================================== */
+.tokenomics-box {
+  position: absolute;
+  right: 406px;
+  top: 60px;
+  width: 237px;
+  height: 475px;
+  z-index: 0;
+}
+
+/* Wrapper for the border with clip-path */
+.tokenomics-wrapper {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 85%,
+    85% 100%,
+    0% 100%
+  );
+  z-index: 2;
+}
+
+/* Inner panel for content */
+.tokenomics-frame {
+  position: absolute;
+  inset: 6px;
+  background: #FFFFFF;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 85%,
+    85% 100%,
+    0% 100%
+  );
+  z-index: 3;
+}
+
+.vertical-title {
+  position: absolute;
+  right: 225px;
+  top: 120px;
+  width: 220px;
+  height: 40px;
+  transform: rotate(-90deg);
+  transform-origin: right top;
+  font-family: 'Jacques Francois Shadow', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 80px;
+  line-height: 1.2;
+  letter-spacing: -0.1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+  text-transform: capitalize;
+  z-index: 4;
+}
+
+.tokenomics-stats {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 30px;
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 4;
+}
+
+/* All divs stack vertically with same alignment */
+.tokenomics-stats div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+
+.tokenomics-stats span {
+  font-family: 'Ranchers', cursive;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #000000;
+  font-weight: 400;
+}
+
+.tokenomics-stats strong {
+  font-family: 'Ranchers', cursive;
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  text-transform: capitalize;
+  color: #000000;
+  font-weight: bold;
+}
+
+/* First row - Total Supply 10M */
+.tokenomics-stats div:first-child {
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+}
+
+.tokenomics-stats div:first-child span {
+  font-size: 18px;
+}
+
+.tokenomics-stats div:first-child strong {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ========================================
+   CENTER TOPIC SECTION (PANDA HEADLINE)
+   ======================================== */
+
+.center-topic {
+  position: absolute;
+  left: 564px;
+  top: 238px;
+  width: 807px;
+  height: 674px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-burst {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.center-topic h1 {
+  position: absolute;
+  left: 47%;
+  top: 47%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-family: 'Rampart One', cursive;
+  font-size: 110px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #000;
+}
+
+/* ========================================
+   JOIN COMMUNITY SECTION
+   ======================================== */
+
+.join-box {
+  position: absolute;
+  left: 67px;
+  top: 430px;
+  width: 619.72px;
+  height: 368.5px;
+}
+
+.panda-standing {
+  position: absolute;
+  right: 0;
+  top: -10px;
+  width: 343px;
+  height: 345px;
+  z-index: 1;
+}
+
+/* Wrapper for border and clip-path */
+.join-panel-wrapper {
+  position: absolute;
+  left: 0;
+  top: 51px;
+  width: 320px;
+  background: #000;
+  padding: 7px;
+  box-sizing: border-box;
+  /* Pentagon with arrow at bottom */
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    90% 80%,
+    50% 100%,
+    0% 100%
+  );
+}
+
+/* Inner panel for content */
+.join-panel {
+  background: #fff;
+  padding: 24px 24px 35px 24px;
+  text-align: center;
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    90% 80%,
+    50% 100%,
+    0% 100%
+  );
+}
+
+.join-panel p {
+  margin: 0 0 16px 0;
+  font-size: 24px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+}
+
+.join-panel button {
+  margin-top: 8px;
+  width: 197px;
+  height: 48px;
+  border: 0;
+  border-radius: 0;
+  background: #000;
+  color: #fff;
+  font-family: 'Ranchers', cursive;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: 0.1em;
+  text-transform: capitalize;
+  cursor: pointer;
+  clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+}
+
+.social-row {
+  margin-top: 18px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.social-row img {
+  width: 48px;
+  height: 46px;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.social-row img:hover {
+  transform: scale(1.1);
+}
+/* ========================================
+   ROADMAP SECTION
+   ======================================== */
+
+.roadmap-box {
+  position: absolute;
+  left: 1267px;
+  top: 56px;
+  width: 613.25px;
+  height: 723.11px;
+  z-index: 6;
+}
+
+.roadmap-title {
+  position: absolute;
+  left: 285px;
+  top: 0;
+  width: 328px;
+  height: 96px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Jacques Francois Shadow', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 80px;
+  line-height: 1.2;
+  letter-spacing: -0.1em;
+  vertical-align: middle;
+  text-transform: capitalize;
+  color: #2a0e14;
+}
+
+.roadmap-bg {
+  position: absolute;
+  top: 96px;
+  right: 5px;
+  width: 347px;
+  height: 616px;
+  z-index: 0;
+}
+
+.roadmap-phase {
+  position: absolute;
+  z-index: 1;
+}
+
+.roadmap-phase h3 {
+  margin: 0 0 8px;
+  font-size: 32px;
+  line-height: 0.9;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: 'Ranchers', cursive;
+}
+
+.roadmap-phase p {
+  margin: 0 auto;       /* narrower text block */
+  font-size: 18px;
+  line-height: 0.9;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  font-family: 'Ranchers', cursive;
+}
+
+/* Phase 1 container */
+.roadmap-phase-1 {
+  position: absolute;
+  right: 15px;
+  top: 110px;
+  width: 260px;
+  text-align: right;
+}
+
+/* First block - stays right-aligned */
+.phase1-text-main {
+  width: 245px;
+  text-align: center;
+  margin: 0; 
+  line-height: 1.08;
+  
+  position: relative;
+  left: -25px;
+  right: 0; 
+}
+
+.phase1-text-presale {
+  width: 230px;
+  margin: 0; 
+  text-align: left;
+  line-height: 1.08;
+  position: relative;
+  left: -80px; 
+}
+
+/* Make both blocks display as block elements that stack */
+.roadmap-phase-1 p {
+  margin: 0 0 0 auto;
+  font-size: 18px;
+  line-height: 1.08;
+  letter-spacing: 0.03em;
+  text-transform: capitalize;
+  font-family: 'Ranchers', cursive;
+  max-width: 250px;
+}
+
+.roadmap-phase-2 {
+  right: 15px;
+  top: 305px;
+  width: 324px;
+  text-align: right;
+}
+
+.roadmap-phase-2 p {
+  width: 259px;
+  height: 144px;
+  line-height: 1.08;
+  max-width: 250px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.roadmap-phase-3 {
+  right: 15px;
+  top: 550px;
+  width: 259px;
+  text-align: right;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.roadmap-phase-3 p {
+  width: 259px;
+  height: 90px;
+  line-height: 1.08;
+  max-width: 220px;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.panda-lying {
+  position: absolute;
+  right: 250px;
+  top: 445px;
+  width: 366px;
+  height: 280px;
+  z-index: 2;
+}
+
+.panda-leg {
+  position: absolute;
+  right: 255px;
+  top: 4px;
+  width: 176px;
+  height: 176px;
+  transform: rotate(-14.36deg);
+  z-index: 1;
+}
+
+/* ========================================
+   HOW TO BUY SECTION
+   ======================================== */
+
+.how-box {
+  position: absolute;
+  left: 30px;
+  top: 750px;
+  width: 721px;
+  height: 299.71px;
+}
+
+.how-title {
+  position: absolute;
+  left: 362px;
+  top: 3px;
+  width: 280px;
+  height: 96px;
+  line-height: 1.2;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-family: 'Jacques Francois Shadow', serif;
+  letter-spacing: -0.1em;
+  color: #2a0e14;
+  z-index: 2;
+  font-size: 80px;
+  font-weight: 400;
 }
 
-.App-link {
-  color: #61dafb;
+.how-buy-title {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 647px;
+  top: 140px;
+  width: 50px;
+  height: 80px;
+  line-height: 0.61;
+  z-index: 2;
+  font-size: 80px;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Jacques Francois Shadow', serif;
+  letter-spacing: -0.1em;
+  color: #2a0e14;
+  font-weight: 400;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.how-buy-title span {
+  display: block;
+  font-size: 80px;
+}
+
+.how-bg {
+  position: absolute;
+  left: -4px;
+  top: 4px;
+  width: 664px;
+  height: 300px;
+  overflow: visible;
+  z-index: 0;
+}
+
+.how-step {
+  position: absolute;
+  z-index: 2;
+  font-family: 'Ranchers', cursive;
+  text-align: center;
+}
+
+.how-step h4 {
+  margin: 0 0 0 8px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  color: #000000;
+}
+
+.how-step p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: capitalize;
+  color: #000000;
+  text-align: center;
+  left: 45px;
+}
+
+.how-step-1 {
+  left: 35px;
+  top: 125px;
+  width: 195px;
+}
+
+.how-step-2 {
+  left: 235px;
+  top: 125px;
+  width: 195px;
+}
+
+.how-step-3 {
+  left: 435px;
+  top: 125px;
+  width: 195px;
+}
+
+.how-arrow {
+  position: absolute;
+  font-size: 42px;
+  line-height: 1;
+  font-family: sans-serif;
+  font-weight: 800;
+  text-align: center;
+  color: #000000;
+  z-index: 2;
+}
+
+.how-arrow-1 {
+  left: 232px;
+  top: 140px;
+  width: 40px;
+}
+
+.how-arrow-2 {
+  left: 422px;
+  top: 140px;
+  width: 40px;
+}
+/* ========================================
+   BUY NOW SECTION
+   ======================================== */
+
+.buy-box {
+  position: absolute;
+  left: 688px;
+  top: 629px;
+  width: 1192px;
+  height: 440.5px;
+}
+
+.hello-bubble {
+  position: absolute;
+  left: 15px;
+  top: 47px;
+  width: 192px;
+  height: 206px;
+  transform: rotate(-10.36deg);
+  z-index: 2;
+}
+
+.panda-bottom {
+  position: absolute;
+  left: 130px;
+  bottom: 0;
+  width: 341px;
+  z-index: 1;
+}
+
+.buy-arrow-panel {
+  position: absolute;
+  left: 355px;
+  top: 0px;
+  width: 579px;
+  height: 441px;
+  z-index: 0;
+}
+
+.buy-arrow-copy {
+  position: absolute;
+  left: 530px;
+  top: 255px;
+  width: 304px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Ranchers', cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 90%;
+  letter-spacing: 10%;
+  text-align: center;
+  text-transform: capitalize;
+  vertical-align: middle;
+
+  transform: rotate(-0.42deg);
+  z-index: 1;
+}
+
+.buy-circle {
+  position: absolute;
+  right: 0;
+  top: 190px;
+  width: 274px;
+  height: 221px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.buy-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  
+}
+
+.buy-circle span {
+  position: absolute;
+  left: 1669px;
+  top: 857px;
+  width: 110px;
+  height: 100px;
+
+  transform: translate(-50%, -50%) rotate(022deg);
+
+  font-size: 56px;
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  text-align: center;
+
+  background: white;
+  opacity: 1;
+}
+
+.mobile-header,
+.mobile-hero,
+.mobile-stack {
+  display: none;
+}
+
+/* ========================================
+   RESPONSIVE MEDIA QUERIES
+   ======================================== */
+
+@media (max-width: 900px) {
+  .panda-page {
+    display: block;
+    overflow: auto;
+    min-height: auto;
   }
-  to {
-    transform: rotate(360deg);
+
+  .panda-desktop-shell {
+    display: none;
+  }
+
+  .panda-mobile-shell {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    background: #fff;
+    color: #000;
+    overflow-x: hidden;
+    font-family: 'Ranchers', cursive;
+  }
+
+  .mobile-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 8px 6px;
+    background: #000;
+  }
+
+  .mobile-logo {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+  }
+
+  .mobile-menu {
+    width: 26px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .mobile-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px 12px 10px;
+    gap: 10px;
+    position: relative;
+  }
+
+  .mobile-hero-burst {
+    width: min(100%, 280px);
+    height: auto;
+  }
+
+  .mobile-buy-bubble {
+    width: 118px;
+    height: auto;
+    position: absolute;
+    right: 34px;
+    top: 58px;
+  }
+
+  .mobile-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 0 10px 24px;
+  }
+
+  .mobile-card {
+    position: relative;
+  }
+
+  .mobile-about {
+    min-height: 560px;
+  }
+
+  .mobile-about-panda {
+    width: 122px;
+    position: absolute;
+    left: 6px;
+    top: -18px;
+    z-index: 2;
+  }
+
+  .mobile-about-title {
+    position: absolute;
+    left: 72px;
+    top: 30px;
+    font-size: 34px;
+    z-index: 2;
+  }
+
+  .mobile-about-panel {
+    position: relative;
+    padding-top: 120px;
+    min-height: 500px;
+  }
+
+  .mobile-about-bg {
+    position: absolute;
+    left: 0;
+    top: 92px;
+    width: 100%;
+    height: auto;
+    transform: scaleY(-1);
+  }
+
+  .mobile-about-copy {
+    position: relative;
+    z-index: 2;
+    padding: 128px 24px 0;
+    text-align: center;
+  }
+
+  .mobile-about-copy p {
+    margin: 0 0 10px;
+    font-size: 15px;
+    line-height: 1.18;
+    letter-spacing: 0.04em;
+    text-transform: capitalize;
+  }
+
+  .mobile-pow {
+    position: absolute;
+    right: 0;
+    bottom: 8px;
+    width: 112px;
+    z-index: 3;
+  }
+
+  .mobile-feature-panda {
+    display: block;
+    width: 208px;
+    margin: -26px auto 0;
+  }
+
+  .mobile-tokenomics {
+    min-height: 260px;
+    padding-top: 4px;
+  }
+
+  .mobile-vertical-title {
+    position: absolute;
+    left: 0;
+    top: 12px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-family: 'Jacques Francois Shadow', serif;
+    font-size: 28px;
+    color: #4b1c23;
+  }
+
+  .mobile-tokenomics-panel {
+    border: 4px solid #000;
+    min-height: 260px;
+    padding: 26px 28px 22px 72px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 12px;
+    align-items: center;
+  }
+
+  .mobile-tokenomics-panel > div {
+    text-align: center;
+  }
+
+  .mobile-tokenomics-panel span,
+  .mobile-tokenomics-panel strong {
+    display: block;
+    font-size: 20px;
+    line-height: 1;
+    text-transform: capitalize;
+  }
+
+  .mobile-tokenomics-panel strong {
+    margin-top: 4px;
+    font-size: 28px;
+  }
+
+  .mobile-section-title {
+    font-size: 32px;
+    text-align: center;
+    margin: 0 0 10px;
+    color: #4b1c23;
+  }
+
+  .mobile-roadmap {
+    min-height: 520px;
+  }
+
+  .mobile-roadmap-phases {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mobile-phase {
+    border: 4px solid #000;
+    padding: 10px 12px;
+    text-align: center;
+  }
+
+  .mobile-phase h3 {
+    margin: 0 0 4px;
+    font-size: 24px;
+    text-transform: uppercase;
+  }
+
+  .mobile-phase p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.12;
+    text-transform: capitalize;
+  }
+
+  .mobile-roadmap-panda {
+    width: 190px;
+    display: block;
+    margin: 10px auto 0;
+  }
+
+  .mobile-how {
+    min-height: 420px;
+  }
+
+  .mobile-how-panel {
+    border: 4px solid #000;
+    padding: 18px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .mobile-step h4 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .mobile-step p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.15;
+    text-align: center;
+    text-transform: capitalize;
+  }
+
+  .mobile-community {
+    min-height: 520px;
+    padding-bottom: 8px;
+  }
+
+  .mobile-hello {
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 90px;
+  }
+
+  .mobile-community-panda {
+    width: 208px;
+    position: absolute;
+    left: 14px;
+    bottom: 8px;
+  }
+
+  .mobile-community-panel {
+    margin-left: 8px;
+    margin-top: 118px;
+    border: 4px solid #000;
+    padding: 18px 16px 20px;
+    text-align: center;
+  }
+
+  .mobile-community-panel p {
+    margin: 0 0 14px;
+    font-size: 18px;
+    line-height: 1.05;
+    text-transform: capitalize;
+  }
+
+  .mobile-buy-now-bubble {
+    width: 122px;
+    margin: 0 auto 14px;
+    position: relative;
+  }
+
+  .mobile-buy-now-bubble img {
+    width: 100%;
+    display: block;
+  }
+
+  .mobile-buy-now-bubble span {
+    position: absolute;
+    left: 50%;
+    top: 48%;
+    transform: translate(-50%, -50%);
+    font-size: 28px;
+    line-height: 0.95;
+  }
+
+  .mobile-social-row {
+    margin-top: 6px;
+    gap: 12px;
+  }
+
+  .mobile-social-row img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .mobile-join-panda {
+    width: 110px;
+    position: absolute;
+    right: 2px;
+    bottom: 0;
   }
 }
