@@ -6,11 +6,12 @@ const DESKTOP_WIDTH = 1920;
 const DESKTOP_HEIGHT = 1080;
 
 function getDesktopScale() {
-  if (!globalThis.window) {
+  if (globalThis.window === undefined) {
     return 1;
   }
-
-  return Math.min(window.innerWidth / DESKTOP_WIDTH, window.innerHeight / DESKTOP_HEIGHT, 1);
+  const scaleX = globalThis.window.innerWidth / DESKTOP_WIDTH;
+  const scaleY = globalThis.window.innerHeight / DESKTOP_HEIGHT;
+  return Math.min(scaleX, scaleY);
 }
 
 function App() {
@@ -18,29 +19,55 @@ function App() {
 
   useEffect(() => {
     const updateScale = () => setDesktopScale(getDesktopScale());
-
     updateScale();
-    window.addEventListener('resize', updateScale);
-
-    return () => window.removeEventListener('resize', updateScale);
+    if (globalThis.window !== undefined) {
+      globalThis.window.addEventListener('resize', updateScale);
+    }
+    return () => {
+      if (globalThis.window !== undefined) {
+        globalThis.window.removeEventListener('resize', updateScale);
+      }
+    };
   }, []);
 
   const desktopWrapStyle: CSSProperties = {
-    width: `${DESKTOP_WIDTH * desktopScale}px`,
-    height: `${DESKTOP_HEIGHT * desktopScale}px`,
+    transform: `scale(${desktopScale})`,
+    transformOrigin: 'center center',
+    width: `${DESKTOP_WIDTH}px`,
+    height: `${DESKTOP_HEIGHT}px`,
   };
 
-  const desktopStyle: CSSProperties = {
-    transform: `scale(${desktopScale})`,
+  // Interactive handlers
+  const handleSocialClick = (platform: string) => {
+    const socialLinks: Record<string, string> = {
+      twitter: 'https://twitter.com/pandatoken',
+      telegram: 'https://t.me/pandatoken',
+      discord: 'https://discord.gg/pandatoken'
+    };
+    if (globalThis.window !== undefined) {
+      globalThis.window.open(socialLinks[platform] || socialLinks.twitter, '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleJoinNow = () => {
+    if (globalThis.window !== undefined) {
+      globalThis.window.open('https://t.me/pandatoken', '_blank', 'noopener,noreferrer');
+    }
+  };
+
+  const handleBuyNow = () => {
+    if (globalThis.window !== undefined) {
+      globalThis.window.open('https://app.uniswap.org/', '_blank', 'noopener,noreferrer');
+    }
   };
 
   return (
     <div className="panda-page">
-      <div className="panda-desktop-shell" aria-hidden={desktopScale < 1 ? false : undefined}>
+      <div className="panda-desktop-shell">
         <div className="panda-scale-wrap" style={desktopWrapStyle}>
-          <main className="panda-desktop" style={desktopStyle} aria-label="Panda desktop landing page">
+          <main className="panda-desktop" aria-label="Panda desktop landing page">
             <div className="desktop-border" />
-
+            
             <section className="about-box" aria-label="About us section">
               <img src="/assets/panda-sitting.png" alt="Panda mascot" className="about-panda-top" />
               <img src="/assets/pow.png" alt="Pow" className="about-pow" />
@@ -62,63 +89,77 @@ function App() {
 
             <img src="/assets/panda-barrel.png" alt="Panda with barrel" className="panda-barrel" />
 
-<section className="tokenomics-box" aria-label="Tokenomics section">
-  <div className="tokenomics-wrapper"></div>
-  <div className="tokenomics-frame"></div>
-  
-  <h2 className="title vertical-title">Tokenomics</h2>
-  
-  <div className="tokenomics-stats">
-    <div>
-      <span>Total Supply</span>
-      <strong>10M</strong>
-    </div>
-    <div>
-      <span>Sell Tax</span>
-      <strong>0%</strong>
-    </div>
-    <div>
-      <span>Liquidity</span>
-      <strong>Burnt</strong>
-    </div>
-    <div>
-      <span>Buy Tax</span>
-      <strong>0%</strong>
-    </div>
-  </div>
-</section>
+            <section className="tokenomics-box" aria-label="Tokenomics section">
+              <div className="tokenomics-wrapper"></div>
+              <div className="tokenomics-frame"></div>
+              <h2 className="title vertical-title">Tokenomics</h2>
+              <div className="tokenomics-stats">
+                <div>
+                  <span>Total Supply</span>
+                  <strong>10M</strong>
+                </div>
+                <div>
+                  <span>Sell Tax</span>
+                  <strong>0%</strong>
+                </div>
+                <div>
+                  <span>Liquidity</span>
+                  <strong>Burnt</strong>
+                </div>
+                <div>
+                  <span>Buy Tax</span>
+                  <strong>0%</strong>
+                </div>
+              </div>
+            </section>
 
             <section className="center-topic" aria-label="Panda headline">
               <img src="/assets/main -text.png" alt="Comic burst" className="main-burst" />
               <h1>PANDA</h1>
             </section>
 
-          <section className="join-box" aria-label="Join community section">
-            <img src="/assets/panda-hero.png" alt="Standing panda" className="panda-standing" />
-            <div className="join-panel-wrapper">
-              <div className="join-panel">
-                <p>Join The Panda Token Community Today And Be Part Of A Fun.</p>
-                <button type="button">Join Now</button>
-                <div className="social-row">
-                  <img src="/assets/Group 1171277302.png" alt="Social 1" />
-                  <img src="/assets/Frame 1261152963.png" alt="Social 2" />
-                  <img src="/assets/Frame 1261154701.png" alt="Social 3" />
+            <section className="join-box" aria-label="Join community section">
+              <img src="/assets/panda-hero.png" alt="Standing panda" className="panda-standing" />
+              <div className="join-panel-wrapper">
+                <div className="join-panel">
+                  <p>Join The Panda Token Community Today And Be Part Of A Fun.</p>
+                  <button type="button" onClick={handleJoinNow}>Join Now</button>
+                  <div className="social-row">
+                    <button 
+                      type="button"
+                      onClick={() => handleSocialClick('twitter')}
+                      aria-label="Twitter"
+                    >
+                      <img src="/assets/Group 1171277302.png" alt="Twitter" />
+                    </button>
+                    <button 
+                      type="button"
+                      onClick={() => handleSocialClick('telegram')}
+                      aria-label="Telegram"
+                    >
+                      <img src="/assets/Frame 1261152963.png" alt="Telegram" />
+                    </button>
+                    <button 
+                      type="button"
+                      onClick={() => handleSocialClick('discord')}
+                      aria-label="Discord"
+                    >
+                      <img src="/assets/Frame 1261154701.png" alt="Discord" />
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
 
             <section className="roadmap-box" aria-label="Roadmap section">
               <h2 className="title roadmap-title">Roadmap</h2>
               <img src="/assets/text box-roadmap.png" alt="Roadmap panel" className="roadmap-bg" />
               <div className="roadmap-phase roadmap-phase-1">
                 <h3>Phase 01</h3>
-
                 <p className="phase1-text-main">
                   Introducing Panda Token To The World With Clear Objectives.
                   Build A Strong And Active Community On Social Platforms.
                 </p>
-
                 <p className="phase1-text-presale">
                   Conduct A Pre-Sale To Allow Early Adopters To Get Involved.
                 </p>
@@ -151,7 +192,7 @@ function App() {
               </h2>
               <img src="/assets/text box 2.png" alt="How to buy panel" className="how-bg" />
               <div className="how-step how-step-1">
-                <h4>Set Up A Wallet</h4><br />
+                <h4>Set Up A Wallet</h4>
                 <p>Download A Wallet Like MetaMask Or Trust Wallet And Secure It With A Backup Phrase.</p>
               </div>
               <div className="how-arrow how-arrow-1">→</div>
@@ -174,10 +215,14 @@ function App() {
                 Buy Panda Token Now And Join The Community In Supporting Wildlife Conservation While
                 Enjoying Exclusive Rewards!
               </div>
-              <div className="buy-circle">
-                <img src="/assets/Group 1261153031.png" alt="Buy now bubble" />
-                <span>Buy Now</span>
-              </div>
+              <button
+                type="button"
+                className="buy-circle"
+                onClick={handleBuyNow}
+                aria-label="Buy Now"
+              >
+                <img src="/assets/Group 1261153031.png" alt="Buy Now" />
+              </button>
             </section>
           </main>
         </div>
@@ -191,7 +236,15 @@ function App() {
 
         <section className="mobile-hero" aria-label="Panda hero">
           <img src="/assets/main -text.png" alt="PANDA burst" className="mobile-hero-burst" />
-          <img src="/assets/Group 1261153031.png" alt="Buy now" className="mobile-buy-bubble" />
+          <button
+            type="button"
+            className="mobile-buy-bubble"
+            onClick={handleBuyNow}
+            aria-label="Buy Now"
+            style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+          >
+            <img src="/assets/Group 1261153031.png" alt="Buy Now" />
+          </button>
         </section>
 
         <main className="mobile-stack">
@@ -296,14 +349,40 @@ function App() {
                 Buy Panda Token Now And Join The Community In Supporting Wildlife Conservation While
                 Enjoying Exclusive Rewards!
               </p>
-              <div className="mobile-buy-now-bubble">
-                <img src="/assets/Group 1261153031.png" alt="Buy now bubble" />
-                <span>Buy Now</span>
-              </div>
+              <button
+                type="button"
+                className="mobile-buy-now-bubble"
+                onClick={handleBuyNow}
+                aria-label="Buy Now"
+                style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', width: '122px', margin: '0 auto 14px' }}
+              >
+                <img src="/assets/Group 1261153031.png" alt="Buy Now" />
+              </button>
               <div className="social-row mobile-social-row">
-                <img src="/assets/Group 1171277302.png" alt="Social 1" />
-                <img src="/assets/Frame 1261152963.png" alt="Social 2" />
-                <img src="/assets/Frame 1261154701.png" alt="Social 3" />
+                <button 
+                  type="button"
+                  onClick={() => handleSocialClick('twitter')}
+                  aria-label="Twitter"
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                >
+                  <img src="/assets/Group 1171277302.png" alt="Twitter" />
+                </button>
+                <button 
+                  type="button"
+                  onClick={() => handleSocialClick('telegram')}
+                  aria-label="Telegram"
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                >
+                  <img src="/assets/Frame 1261152963.png" alt="Telegram" />
+                </button>
+                <button 
+                  type="button"
+                  onClick={() => handleSocialClick('discord')}
+                  aria-label="Discord"
+                  style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer' }}
+                >
+                  <img src="/assets/Frame 1261154701.png" alt="Discord" />
+                </button>
               </div>
             </div>
             <img src="/assets/panda-hero.png" alt="Standing panda" className="mobile-join-panda" />

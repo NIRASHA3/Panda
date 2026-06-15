@@ -1,19 +1,119 @@
 /* ========================================
-   LAYOUT & CONTAINER STYLES
-   ======================================== */
+GLOBAL RESET & BASE
+======================================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+}
 
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* ========================================
+PROFESSIONAL PANDA LIMB ANIMATIONS
+======================================== */
+
+/* Sitting Panda - Gentle head tilt */
+@keyframes headTilt {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Lying Panda - Gentle roll */
+@keyframes gentleRoll {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+/* Panda Leg - kicking motion */
+@keyframes kick {
+  0%, 100% {
+    transform: rotate(-2deg) translateY(0px) translateX(0px);
+  }
+  30% {
+    transform: rotate(8deg) translateY(-8px) translateX(5px);
+  }
+  60% {
+    transform: rotate(-5deg) translateY(-3px) translateX(-2px);
+  }
+}
+
+/* Waving Panda - Body bounce */
+@keyframes bodyBounce {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Hello bubble - floating */
+@keyframes bubbleFloat {
+  0%, 100% {
+    transform: translateY(0px) rotate(-10.36deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-8.36deg);
+  }
+}
+
+/* Buy button - gentle pulse */
+@keyframes gentlePulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.2));
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ========================================
+LAYOUT & CONTAINER STYLES
+======================================== */
 .panda-page {
-  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
   background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0;
   overflow: hidden;
 }
 
 .panda-desktop-shell {
-  display: block;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .panda-mobile-shell {
@@ -21,11 +121,8 @@
 }
 
 .panda-scale-wrap {
-  position: relative;
-  width: min(100vw, 177.778vh);
-  height: min(56.25vw, 100vh);
-  overflow: hidden;
-  background: #fff;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .panda-desktop {
@@ -33,10 +130,9 @@
   width: 1920px;
   height: 1080px;
   background: #fff;
-  transform-origin: top left;
   font-family: 'Ranchers', cursive;
   color: #000;
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .desktop-border {
@@ -46,8 +142,6 @@
   width: 1860px;
   height: 1020px;
   border: 3px solid #000;
-  pointer-events: none;
-  z-index: 1;
 }
 
 .halftone {
@@ -84,9 +178,8 @@
 }
 
 /* ========================================
-   TYPOGRAPHY & TITLES
-   ======================================== */
-
+TYPOGRAPHY & TITLES
+======================================== */
 .title {
   font-family: 'Rampart One', serif;
   font-size: 80px;
@@ -97,9 +190,8 @@
 }
 
 /* ========================================
-   ABOUT SECTION
-   ======================================== */
-
+ABOUT SECTION
+======================================== */
 .about-box {
   position: absolute;
   left: 6px;
@@ -107,6 +199,9 @@
   width: 792.7070922851562px;
   height: 430.2578125px;
   z-index: 5;
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.1s;
 }
 
 .about-panda-top {
@@ -118,6 +213,13 @@
   object-fit: contain;
   z-index: 10;
   display: block;
+  animation: headTilt 4s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.about-panda-top:hover {
+  animation: none;
+  transform: scale(1.05) rotate(5deg);
 }
 
 .about-pow {
@@ -149,8 +251,6 @@
   color: #2a0e14;
   margin: 0;
 }
-
-/* removed duplicate desktop section block; the canonical section styles are defined later in the file */
 
 .about-text-bg {
   position: absolute;
@@ -208,48 +308,42 @@
   top: 54px;
   width: 537px;
   height: 369px;
-  z-index: -1;
+  z-index: 0;
+  transition: transform 0.3s ease;
+}
+
+.panda-barrel:hover {
+  transform: scale(1.05) rotate(2deg);
 }
 
 /* ========================================
-   TOKENOMICS SECTION
-   ======================================== */
+TOKENOMICS SECTION
+======================================== */
 .tokenomics-box {
   position: absolute;
-  right: 412px;
-  top: 50px;
+  right: 406px;
+  top: 57px;
   width: 237px;
   height: 475px;
   z-index: 0;
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.2s;
 }
 
-/* Wrapper for the border with clip-path */
 .tokenomics-wrapper {
   position: absolute;
   inset: 0;
   background: #000;
-  clip-path: polygon(
-    0% 0%,
-    100% 0%,
-    100% 85%,
-    85% 100%,
-    0% 100%
-  );
+  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%);
   z-index: 2;
 }
 
-/* Inner panel for content */
 .tokenomics-frame {
   position: absolute;
   inset: 6px;
   background: #FFFFFF;
-  clip-path: polygon(
-    0% 0%,
-    100% 0%,
-    100% 85%,
-    85% 100%,
-    0% 100%
-  );
+  clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%);
   z-index: 3;
 }
 
@@ -288,32 +382,27 @@
   z-index: 4;
 }
 
-/* All divs stack vertically */
 .tokenomics-stats div {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-/* Row 1 - Total Supply (centered) */
 .tokenomics-stats div:first-child {
   align-items: center;
   text-align: center;
 }
 
-/* Row 2 - Sell Tax (right-aligned) */
 .tokenomics-stats div:nth-child(2) {
   align-items: flex-end;
   text-align: right;
 }
 
-/* Row 3 - Liquidity (centered) */
 .tokenomics-stats div:nth-child(3) {
   align-items: center;
   text-align: center;
 }
 
-/* Row 4 - Buy Tax (right-aligned) */
 .tokenomics-stats div:nth-child(4) {
   align-items: flex-end;
   text-align: right;
@@ -339,60 +428,9 @@
   font-weight: 400;
 }
 
-/* Text alignment for each row */
-.tokenomics-stats div:first-child span,
-.tokenomics-stats div:first-child strong {
-  text-align: center;
-}
-
-.tokenomics-stats div:nth-child(2) span,
-.tokenomics-stats div:nth-child(2) strong {
-  text-align: right;
-}
-
-.tokenomics-stats div:nth-child(3) span,
-.tokenomics-stats div:nth-child(3) strong {
-  text-align: center;
-}
-
-.tokenomics-stats div:nth-child(4) span,
-.tokenomics-stats div:nth-child(4) strong {
-  text-align: right;
-}
-
-/* Optional: Add some right padding for right-aligned rows to prevent touching the edge */
-.tokenomics-stats div:nth-child(2) strong,
-.tokenomics-stats div:nth-child(4) strong {
-  padding-right: 5px;
-}
-
-/* Width adjustments to prevent text wrapping */
-.tokenomics-stats div:first-child span,
-.tokenomics-stats div:first-child strong {
-  min-width: 89px;
-}
-
-.tokenomics-stats div:nth-child(2) span,
-.tokenomics-stats div:nth-child(2) strong {
-  min-width: 99px;
-}
-
-.tokenomics-stats div:nth-child(3) span {
-  min-width: 114px;
-}
-
-.tokenomics-stats div:nth-child(3) strong {
-  min-width: 119px;
-}
-
-.tokenomics-stats div:nth-child(4) span,
-.tokenomics-stats div:nth-child(4) strong {
-  min-width: 99px;
-}
 /* ========================================
-   CENTER TOPIC SECTION (PANDA HEADLINE)
-   ======================================== */
-
+CENTER TOPIC SECTION
+======================================== */
 .center-topic {
   position: absolute;
   left: 564px;
@@ -402,6 +440,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.1s;
 }
 
 .main-burst {
@@ -425,27 +466,33 @@
 }
 
 /* ========================================
-   JOIN COMMUNITY SECTION
-   ======================================== */
-
+JOIN COMMUNITY SECTION
+======================================== */
 .join-box {
   position: absolute;
   left: 67px;
-  top: 430px;
+  top: 419px;
   width: 619.72px;
-  height: 368.5px;
+  height: 468.5px;
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.2s;
 }
 
 .panda-standing {
   position: absolute;
   right: 0;
-  top: -10px;
+  top: 0px;
   width: 343px;
   height: 345px;
   z-index: 1;
+  transition: transform 0.3s ease;
 }
 
-/* Wrapper for border and clip-path */
+.panda-standing:hover {
+  transform: scale(1.05) translateX(-5px);
+}
+
 .join-panel-wrapper {
   position: absolute;
   left: 0;
@@ -454,32 +501,18 @@
   background: #000;
   padding: 7px;
   box-sizing: border-box;
-  /* Pentagon with arrow at bottom */
-  clip-path: polygon(
-    0% 0%,
-    100% 0%,
-    90% 80%,
-    50% 100%,
-    0% 100%
-  );
+  clip-path: polygon(0% 0%, 100% 0%, 90% 85%, 40% 100%, 0% 95%);
 }
 
-/* Inner panel for content */
 .join-panel {
   background: #fff;
   padding: 24px 24px 35px 24px;
   text-align: center;
-  clip-path: polygon(
-    0% 0%,
-    100% 0%,
-    90% 80%,
-    50% 100%,
-    0% 100%
-  );
+  clip-path: polygon(0% 0%, 100% 0%, 90% 85%, 40% 100%, 0% 95%);
 }
 
 .join-panel p {
-  margin: 0 0 16px 0;
+  margin: 0 0 8px 0;
   font-size: 24px;
   line-height: 1.2;
   letter-spacing: 0.06em;
@@ -489,9 +522,9 @@
 .join-panel button {
   margin-top: 8px;
   width: 197px;
-  height: 48px;
+  height: 58px;
   border: 0;
-  border-radius: 0;
+  border-radius: 8px;
   background: #000;
   color: #fff;
   font-family: 'Ranchers', cursive;
@@ -501,31 +534,43 @@
   text-transform: capitalize;
   cursor: pointer;
   clip-path: polygon(0% 0%, 100% 0%, 85% 100%, 15% 100%);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.join-panel button:active {
+  transform: translateY(0px);
 }
 
 .social-row {
-  margin-top: 18px;
-  margin-bottom: 8px;
+  margin-top: 8px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 10px;
+}
+
+.social-row button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.social-row button:hover {
+  transform: scale(1.1);
 }
 
 .social-row img {
-  width: 48px;
-  height: 46px;
+  width: 42px;
+  height: 40px;
   object-fit: contain;
-  cursor: pointer;
-  transition: transform 0.2s ease;
+  pointer-events: none;
 }
 
-.social-row img:hover {
-  transform: scale(1.1);
-}
 /* ========================================
-   ROADMAP SECTION
-   ======================================== */
-
+ROADMAP SECTION
+======================================== */
 .roadmap-box {
   position: absolute;
   left: 1267px;
@@ -533,6 +578,9 @@
   width: 613.25px;
   height: 723.11px;
   z-index: 6;
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.15s;
 }
 
 .roadmap-title {
@@ -580,7 +628,7 @@
 }
 
 .roadmap-phase p {
-  margin: 0 auto;       /* narrower text block */
+  margin: 0 auto;
   font-size: 18px;
   line-height: 0.9;
   letter-spacing: 0.03em;
@@ -588,7 +636,6 @@
   font-family: 'Ranchers', cursive;
 }
 
-/* Phase 1 container */
 .roadmap-phase-1 {
   position: absolute;
   right: 15px;
@@ -597,28 +644,25 @@
   text-align: right;
 }
 
-/* First block - stays right-aligned */
 .phase1-text-main {
   width: 245px;
   text-align: center;
-  margin: 0; 
+  margin: 0;
   line-height: 1.08;
-  
   position: relative;
   left: -25px;
-  right: 0; 
+  right: 0;
 }
 
 .phase1-text-presale {
   width: 230px;
-  margin: 0; 
+  margin: 0;
   text-align: left;
   line-height: 1.08;
   position: relative;
-  left: -80px; 
+  left: -80px;
 }
 
-/* Make both blocks display as block elements that stack */
 .roadmap-phase-1 p {
   margin: 0 0 0 auto;
   font-size: 18px;
@@ -644,7 +688,6 @@
   text-align: center;
 }
 
-
 .roadmap-phase-3 {
   right: 15px;
   top: 550px;
@@ -667,6 +710,13 @@
   width: 366px;
   height: 280px;
   z-index: 2;
+  animation: gentleRoll 5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.panda-lying:hover {
+  animation: none;
+  transform: scale(1.05) rotate(2deg);
 }
 
 .panda-leg {
@@ -677,18 +727,28 @@
   height: 176px;
   transform: rotate(-0.36deg);
   z-index: 1;
+  animation: kick 2.5s ease-in-out infinite;
+  transform-origin: top center;
+  transition: transform 0.2s ease;
+}
+
+.panda-leg:hover {
+  animation: none;
+  transform: rotate(-8deg) scale(1.15);
 }
 
 /* ========================================
-   HOW TO BUY SECTION
-   ======================================== */
-
+HOW TO BUY SECTION
+======================================== */
 .how-box {
   position: absolute;
   left: 30px;
   top: 750px;
   width: 721px;
   height: 299.71px;
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.25s;
 }
 
 .how-title {
@@ -768,7 +828,6 @@
   text-transform: capitalize;
   color: #000000;
   text-align: center;
-  left: 45px;
 }
 
 .how-step-1 {
@@ -811,16 +870,19 @@
   top: 140px;
   width: 40px;
 }
-/* ========================================
-   BUY NOW SECTION
-   ======================================== */
 
+/* ========================================
+BUY NOW SECTION - NO BOX AROUND IMAGE
+======================================== */
 .buy-box {
   position: absolute;
   left: 688px;
   top: 629px;
   width: 1192px;
   height: 440.5px;
+  animation: fadeIn 0.6s ease-out;
+  animation-fill-mode: both;
+  animation-delay: 0.2s;
 }
 
 .hello-bubble {
@@ -831,6 +893,13 @@
   height: 206px;
   transform: rotate(-10.36deg);
   z-index: 2;
+  animation: bubbleFloat 3s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.hello-bubble:hover {
+  animation: none;
+  transform: scale(1.1) rotate(-12deg);
 }
 
 .panda-bottom {
@@ -839,6 +908,13 @@
   bottom: 0;
   width: 341px;
   z-index: 1;
+  animation: bodyBounce 5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.panda-bottom:hover {
+  animation: none;
+  transform: scale(1.05) rotate(-2deg);
 }
 
 .buy-arrow-panel {
@@ -855,11 +931,9 @@
   left: 530px;
   top: 255px;
   width: 304px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-family: 'Ranchers', cursive;
   font-weight: 400;
   font-style: normal;
@@ -869,11 +943,11 @@
   text-align: center;
   text-transform: capitalize;
   vertical-align: middle;
-
   transform: rotate(-0.42deg);
   z-index: 1;
 }
 
+/* Buy Circle - Clean, no box */
 .buy-circle {
   position: absolute;
   right: 0;
@@ -883,56 +957,75 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+}
+
+.buy-circle:hover {
+  transform: scale(1.05);
+}
+
+.buy-circle:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.buy-circle:focus-visible {
+  outline: none;
 }
 
 .buy-circle img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  
+  animation: gentlePulse 2s ease-in-out infinite;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  pointer-events: none;
+  display: block;
+  border: none;
+  outline: none;
 }
 
-.buy-circle span {
-  position: absolute;
-  left: 1669px;
-  top: 857px;
-  width: 110px;
-  height: 100px;
-
-  transform: translate(-50%, -50%) rotate(022deg);
-
-  font-size: 56px;
-  line-height: 0.9;
-  letter-spacing: 0.04em;
-  text-transform: capitalize;
-  text-align: center;
-
-  background: white;
-  opacity: 1;
-}
-
-.mobile-header,
-.mobile-hero,
-.mobile-stack {
-  display: none;
+.buy-circle img:hover {
+  animation: none;
+  transform: scale(1.08);
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.25));
 }
 
 /* ========================================
-   RESPONSIVE MEDIA QUERIES
-   ======================================== */
+PARALLAX EFFECT
+======================================== */
+.about-panda-top,
+.panda-barrel,
+.panda-standing,
+.panda-lying,
+.panda-bottom,
+.hello-bubble,
+.panda-leg {
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
 
+/* ========================================
+MOBILE RESPONSIVE
+======================================== */
 @media (max-width: 900px) {
   .panda-page {
     display: block;
     overflow: auto;
     min-height: auto;
   }
-
+  
   .panda-desktop-shell {
     display: none;
   }
-
+  
   .panda-mobile-shell {
     display: block;
     width: 100%;
@@ -942,7 +1035,7 @@
     overflow-x: hidden;
     font-family: 'Ranchers', cursive;
   }
-
+  
   .mobile-header {
     display: flex;
     align-items: center;
@@ -950,19 +1043,19 @@
     padding: 10px 8px 6px;
     background: #000;
   }
-
+  
   .mobile-logo {
     width: 16px;
     height: 16px;
     object-fit: contain;
   }
-
+  
   .mobile-menu {
     width: 26px;
     height: 20px;
     object-fit: contain;
   }
-
+  
   .mobile-hero {
     display: flex;
     flex-direction: column;
@@ -971,35 +1064,53 @@
     gap: 10px;
     position: relative;
   }
-
+  
   .mobile-hero-burst {
     width: min(100%, 280px);
     height: auto;
   }
-
+  
   .mobile-buy-bubble {
     width: 118px;
     height: auto;
     position: absolute;
     right: 34px;
     top: 58px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
   }
-
+  
+  .mobile-buy-bubble:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  .mobile-buy-bubble img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: none;
+    outline: none;
+  }
+  
   .mobile-stack {
     display: flex;
     flex-direction: column;
     gap: 22px;
     padding: 0 10px 24px;
   }
-
+  
   .mobile-card {
     position: relative;
   }
-
+  
   .mobile-about {
     min-height: 560px;
   }
-
+  
   .mobile-about-panda {
     width: 122px;
     position: absolute;
@@ -1007,7 +1118,7 @@
     top: -18px;
     z-index: 2;
   }
-
+  
   .mobile-about-title {
     position: absolute;
     left: 72px;
@@ -1015,13 +1126,13 @@
     font-size: 34px;
     z-index: 2;
   }
-
+  
   .mobile-about-panel {
     position: relative;
     padding-top: 120px;
     min-height: 500px;
   }
-
+  
   .mobile-about-bg {
     position: absolute;
     left: 0;
@@ -1030,14 +1141,14 @@
     height: auto;
     transform: scaleY(-1);
   }
-
+  
   .mobile-about-copy {
     position: relative;
     z-index: 2;
     padding: 128px 24px 0;
     text-align: center;
   }
-
+  
   .mobile-about-copy p {
     margin: 0 0 10px;
     font-size: 15px;
@@ -1045,7 +1156,7 @@
     letter-spacing: 0.04em;
     text-transform: capitalize;
   }
-
+  
   .mobile-pow {
     position: absolute;
     right: 0;
@@ -1053,18 +1164,18 @@
     width: 112px;
     z-index: 3;
   }
-
+  
   .mobile-feature-panda {
     display: block;
     width: 208px;
     margin: -26px auto 0;
   }
-
+  
   .mobile-tokenomics {
     min-height: 260px;
     padding-top: 4px;
   }
-
+  
   .mobile-vertical-title {
     position: absolute;
     left: 0;
@@ -1075,7 +1186,7 @@
     font-size: 28px;
     color: #4b1c23;
   }
-
+  
   .mobile-tokenomics-panel {
     border: 4px solid #000;
     min-height: 260px;
@@ -1085,11 +1196,11 @@
     gap: 18px 12px;
     align-items: center;
   }
-
+  
   .mobile-tokenomics-panel > div {
     text-align: center;
   }
-
+  
   .mobile-tokenomics-panel span,
   .mobile-tokenomics-panel strong {
     display: block;
@@ -1097,58 +1208,58 @@
     line-height: 1;
     text-transform: capitalize;
   }
-
+  
   .mobile-tokenomics-panel strong {
     margin-top: 4px;
     font-size: 28px;
   }
-
+  
   .mobile-section-title {
     font-size: 32px;
     text-align: center;
     margin: 0 0 10px;
     color: #4b1c23;
   }
-
+  
   .mobile-roadmap {
     min-height: 520px;
   }
-
+  
   .mobile-roadmap-phases {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
-
+  
   .mobile-phase {
     border: 4px solid #000;
     padding: 10px 12px;
     text-align: center;
   }
-
+  
   .mobile-phase h3 {
     margin: 0 0 4px;
     font-size: 24px;
     text-transform: uppercase;
   }
-
+  
   .mobile-phase p {
     margin: 0;
     font-size: 12px;
     line-height: 1.12;
     text-transform: capitalize;
   }
-
+  
   .mobile-roadmap-panda {
     width: 190px;
     display: block;
     margin: 10px auto 0;
   }
-
+  
   .mobile-how {
     min-height: 420px;
   }
-
+  
   .mobile-how-panel {
     border: 4px solid #000;
     padding: 18px 16px;
@@ -1156,14 +1267,14 @@
     flex-direction: column;
     gap: 16px;
   }
-
+  
   .mobile-step h4 {
     margin: 0 0 4px;
     font-size: 20px;
     text-align: center;
     text-transform: capitalize;
   }
-
+  
   .mobile-step p {
     margin: 0;
     font-size: 12px;
@@ -1171,26 +1282,26 @@
     text-align: center;
     text-transform: capitalize;
   }
-
+  
   .mobile-community {
     min-height: 520px;
     padding-bottom: 8px;
   }
-
+  
   .mobile-hello {
     position: absolute;
     left: 0;
     top: 8px;
     width: 90px;
   }
-
+  
   .mobile-community-panda {
     width: 208px;
     position: absolute;
     left: 14px;
     bottom: 8px;
   }
-
+  
   .mobile-community-panel {
     margin-left: 8px;
     margin-top: 118px;
@@ -1198,48 +1309,79 @@
     padding: 18px 16px 20px;
     text-align: center;
   }
-
+  
   .mobile-community-panel p {
     margin: 0 0 14px;
     font-size: 18px;
     line-height: 1.05;
     text-transform: capitalize;
   }
-
+  
   .mobile-buy-now-bubble {
     width: 122px;
     margin: 0 auto 14px;
     position: relative;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0;
   }
-
+  
+  .mobile-buy-now-bubble:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
   .mobile-buy-now-bubble img {
     width: 100%;
     display: block;
+    pointer-events: none;
+    border: none;
+    outline: none;
   }
-
-  .mobile-buy-now-bubble span {
-    position: absolute;
-    left: 50%;
-    top: 48%;
-    transform: translate(-50%, -50%);
-    font-size: 28px;
-    line-height: 0.95;
-  }
-
+  
   .mobile-social-row {
     margin-top: 6px;
     gap: 12px;
   }
-
+  
+  .mobile-social-row button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
   .mobile-social-row img {
     width: 34px;
     height: 34px;
+    pointer-events: none;
   }
-
+  
   .mobile-join-panda {
     width: 110px;
     position: absolute;
     right: 2px;
     bottom: 0;
+  }
+}
+
+/* Tablet optimization */
+@media (min-width: 901px) and (max-width: 1280px) {
+  .panda-scale-wrap {
+    transform: scale(0.85);
+  }
+}
+
+/* Performance & Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .about-panda-top,
+  .panda-lying,
+  .panda-leg,
+  .panda-bottom,
+  .hello-bubble,
+  .buy-circle img {
+    animation: none !important;
   }
 }
