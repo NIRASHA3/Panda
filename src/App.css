@@ -36,6 +36,7 @@
   transform-origin: top left;
   font-family: 'Ranchers', cursive;
   color: #000;
+    box-sizing: border-box;
 }
 
 .desktop-border {
@@ -45,6 +46,8 @@
   width: 1860px;
   height: 1020px;
   border: 3px solid #000;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .halftone {
@@ -213,8 +216,8 @@
    ======================================== */
 .tokenomics-box {
   position: absolute;
-  right: 406px;
-  top: 60px;
+  right: 412px;
+  top: 50px;
   width: 237px;
   height: 475px;
   z-index: 0;
@@ -252,52 +255,75 @@
 
 .vertical-title {
   position: absolute;
-  right: 225px;
-  top: 120px;
-  width: 220px;
-  height: 40px;
+  right: 240px;
+  top: 30px;
+  width: 421px;
+  height: 96px;
   transform: rotate(-90deg);
   transform-origin: right top;
   font-family: 'Jacques Francois Shadow', serif;
   font-weight: 400;
   font-style: normal;
   font-size: 80px;
-  line-height: 1.2;
+  line-height: 120%;
   letter-spacing: -0.1em;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  vertical-align: middle;
   text-transform: capitalize;
+  color: #2A0E14;
   z-index: 4;
 }
 
 .tokenomics-stats {
   position: absolute;
-  left: 20px;
-  right: 20px;
-  top: 30px;
+  left: 80px;
+  right: 30px;
+  top: 60px;
   width: auto;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 40px;
   z-index: 4;
 }
 
-/* All divs stack vertically with same alignment */
+/* All divs stack vertically */
 .tokenomics-stats div {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Row 1 - Total Supply (centered) */
+.tokenomics-stats div:first-child {
   align-items: center;
-  width: 100%;
-  gap: 10px;
+  text-align: center;
+}
+
+/* Row 2 - Sell Tax (right-aligned) */
+.tokenomics-stats div:nth-child(2) {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Row 3 - Liquidity (centered) */
+.tokenomics-stats div:nth-child(3) {
+  align-items: center;
+  text-align: center;
+}
+
+/* Row 4 - Buy Tax (right-aligned) */
+.tokenomics-stats div:nth-child(4) {
+  align-items: flex-end;
+  text-align: right;
 }
 
 .tokenomics-stats span {
   font-family: 'Ranchers', cursive;
-  font-size: 16px;
-  letter-spacing: 0.05em;
+  font-size: 28px;
+  line-height: 90%;
+  letter-spacing: 0.1em;
   text-transform: capitalize;
   color: #000000;
   font-weight: 400;
@@ -305,29 +331,64 @@
 
 .tokenomics-stats strong {
   font-family: 'Ranchers', cursive;
-  font-size: 16px;
-  letter-spacing: 0.05em;
+  font-size: 28px;
+  line-height: 90%;
+  letter-spacing: 0.1em;
   text-transform: capitalize;
   color: #000000;
-  font-weight: bold;
+  font-weight: 400;
 }
 
-/* First row - Total Supply 10M */
-.tokenomics-stats div:first-child {
-  margin-bottom: 8px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #ccc;
-}
-
-.tokenomics-stats div:first-child span {
-  font-size: 18px;
-}
-
+/* Text alignment for each row */
+.tokenomics-stats div:first-child span,
 .tokenomics-stats div:first-child strong {
-  font-size: 18px;
-  font-weight: bold;
+  text-align: center;
 }
 
+.tokenomics-stats div:nth-child(2) span,
+.tokenomics-stats div:nth-child(2) strong {
+  text-align: right;
+}
+
+.tokenomics-stats div:nth-child(3) span,
+.tokenomics-stats div:nth-child(3) strong {
+  text-align: center;
+}
+
+.tokenomics-stats div:nth-child(4) span,
+.tokenomics-stats div:nth-child(4) strong {
+  text-align: right;
+}
+
+/* Optional: Add some right padding for right-aligned rows to prevent touching the edge */
+.tokenomics-stats div:nth-child(2) strong,
+.tokenomics-stats div:nth-child(4) strong {
+  padding-right: 5px;
+}
+
+/* Width adjustments to prevent text wrapping */
+.tokenomics-stats div:first-child span,
+.tokenomics-stats div:first-child strong {
+  min-width: 89px;
+}
+
+.tokenomics-stats div:nth-child(2) span,
+.tokenomics-stats div:nth-child(2) strong {
+  min-width: 99px;
+}
+
+.tokenomics-stats div:nth-child(3) span {
+  min-width: 114px;
+}
+
+.tokenomics-stats div:nth-child(3) strong {
+  min-width: 119px;
+}
+
+.tokenomics-stats div:nth-child(4) span,
+.tokenomics-stats div:nth-child(4) strong {
+  min-width: 99px;
+}
 /* ========================================
    CENTER TOPIC SECTION (PANDA HEADLINE)
    ======================================== */
@@ -610,11 +671,11 @@
 
 .panda-leg {
   position: absolute;
-  right: 255px;
-  top: 4px;
+  right: 265px;
+  top: 1px;
   width: 176px;
   height: 176px;
-  transform: rotate(-14.36deg);
+  transform: rotate(-0.36deg);
   z-index: 1;
 }
 
