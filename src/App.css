@@ -533,7 +533,7 @@ JOIN COMMUNITY SECTION (DESKTOP)
 }
 
 .social-row button:hover { transform: scale(1.1); }
-.social-row img { width: 42px; height: 40px; object-fit: contain; pointer-events: none; }
+.social-row img { width: 52px; height: 50px; object-fit: contain; pointer-events: none; }
 
 /* ========================================
 ROADMAP SECTION (DESKTOP)
