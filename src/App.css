@@ -1248,17 +1248,15 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
   }
   
   .mobile-social-row button { background: none; border: none; padding: 0; cursor: pointer; }
-  .mobile-social-row img { width: 47px; height: 46px; display: block; }
+  .social-row img { width: 52px; height: 50px; object-fit: contain; pointer-events: none; }
   
-  .mobile-join-panda {
-    position: absolute;
-    width: 245px;
-    right: -60px;
-    bottom: -15px;
-    z-index: 4;
-    margin-right: 15px;
-    transition: transform 0.3s ease;
-  }
+.mobile-join-panda {
+  position: absolute !important;
+  right: -40px !important;
+  bottom: -20px !important; 
+  width: 240px !important; 
+  z-index: 10 !important;
+}
   
   .mobile-join-panda:active {
     transform: scale(1.05) translateX(-5px);
