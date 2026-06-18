@@ -20,7 +20,7 @@ A fully responsive, highly interactive React application built for the Panda Tok
 Clone the repository:
 
 bash
-git clone https://github.com/yourusername/panda-token.git
+git clone https://github.com/NIRASHA3/Panda.git
 cd panda-token
 Install dependencies:
 
