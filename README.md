@@ -2,6 +2,8 @@
 
 A fully responsive, highly interactive React application built for the Panda Token community. This project features complex CSS animations, custom polygon clip-paths, and a custom mathematical scaling engine to perfectly translate strict Figma designs across all devices.
 
+**Live Demo:** [https://panda-bay.vercel.app/](https://panda-bay.vercel.app/)
+
 ## ✨ Key Features
 
 - **Intelligent Responsive Scaling Engine:** Rather than relying solely on CSS media queries that break at edge-case screen sizes, this app calculates a precise `transform: scale()` multiplier on the fly. This ensures overlapping absolute elements and complex illustrations remain mathematically perfect on *any* device (from a 320px phone to a 4K ultrawide monitor).
@@ -11,26 +13,21 @@ A fully responsive, highly interactive React application built for the Panda Tok
 
 ## 🛠️ Tech Stack
 
-- **Framework:** React 
+- **Framework:** React
 - **Language:** TypeScript
 - **Styling:** Standard CSS3 (Flexbox, CSS Variables, Custom Keyframes)
 - **Build Tool:** Create React App / Webpack (or Vite)
 
 ## 🚀 Installation & Setup
-Clone the repository:
 
-bash
-git clone https://github.com/NIRASHA3/Panda.git
-cd panda-token
-Install dependencies:
+1. **Clone the repository:**
+   git clone [https://github.com/NIRASHA3/Panda.git](https://github.com/NIRASHA3/Panda.git)
+   cd Panda
 
-bash
+2. Install dependencies:
 npm install
-Start the development server:
 
-bash
+3. Start the development server:
 npm start
+
 The app will automatically open in your browser at http://localhost:3000.
-
-
-
