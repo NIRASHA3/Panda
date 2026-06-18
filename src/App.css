@@ -54,38 +54,6 @@ PROFESSIONAL PANDA LIMB ANIMATIONS
   to { opacity: 1; }
 }
 
-/* Mobile Animations - Same as desktop but optimized for mobile */
-@keyframes mobileHeadTilt {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(3deg); }
-}
-
-@keyframes mobileGentleRoll {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(2deg); }
-}
-
-@keyframes mobileKick {
-  0%, 100% { transform: rotate(-2deg) translateY(0px) translateX(0px); }
-  30% { transform: rotate(8deg) translateY(-8px) translateX(5px); }
-  60% { transform: rotate(-5deg) translateY(-3px) translateX(-2px); }
-}
-
-@keyframes mobileBodyBounce {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-}
-
-@keyframes mobileBubbleFloat {
-  0%, 100% { transform: translateY(0px) rotate(-10.36deg); }
-  50% { transform: translateY(-8px) rotate(-8.36deg); }
-}
-
-@keyframes mobileGentlePulse {
-  0%, 100% { transform: scale(1); filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1)); }
-  50% { transform: scale(1.03); filter: drop-shadow(0 8px 25px rgba(0, 0, 0, 0.2)); }
-}
-
 /* ========================================
 LAYOUT & CONTAINER STYLES
 ======================================== */
@@ -106,6 +74,10 @@ LAYOUT & CONTAINER STYLES
   justify-content: center;
   align-items: center;
   overflow: hidden;
+}
+
+.panda-tab-shell {
+  display: none;
 }
 
 .panda-mobile-shell {
@@ -533,7 +505,7 @@ JOIN COMMUNITY SECTION (DESKTOP)
 }
 
 .social-row button:hover { transform: scale(1.1); }
-.social-row img { width: 52px; height: 50px; object-fit: contain; pointer-events: none; }
+.social-row img { width: 42px; height: 40px; object-fit: contain; pointer-events: none; }
 
 /* ========================================
 ROADMAP SECTION (DESKTOP)
@@ -734,6 +706,7 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
   }
   
   .panda-desktop-shell { display: none; }
+  .panda-tab-shell { display: none; }
   
   .panda-mobile-shell {
     display: block;
@@ -864,14 +837,7 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     left: 30px;
     width: 250px;
     transform: rotate(-3deg);
-    z-index: 6;
-    animation: mobileHeadTilt 4s ease-in-out infinite;
-    transition: transform 0.3s ease;
-  }
-  
-  .mobile-about-panda:active {
-    animation: none;
-    transform: scale(1.05) rotate(5deg);
+    z-index: 6; 
   }
   
   .mobile-pow {
@@ -927,11 +893,6 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     position: relative;
     z-index: 3;
     transform: scaleX(-1);
-    transition: transform 0.3s ease;
-  }
-  
-  .mobile-feature-panda:active {
-    transform: scaleX(-1) scale(1.05) rotate(2deg);
   }
   
   /* 3. Mobile Tokenomics Section */
@@ -1023,14 +984,6 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     width: 150px;
     z-index: 10;
     transform: rotate(240deg); /* Adjusted to mimic kick animation from corner */
-    animation: mobileKick 2.5s ease-in-out infinite;
-    transform-origin: center center;
-    transition: transform 0.2s ease;
-  }
-  
-  .mobile-tokenomics-leg:active {
-    animation: none;
-    transform: rotate(220deg) scale(1.15);
   }
 
   /* 4. Mobile Roadmap Section */
@@ -1128,14 +1081,6 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     margin-top: -60px;
     position: relative;
     z-index: 2;
-    animation: mobileGentleRoll 5s ease-in-out infinite;
-    transition: transform 0.3s ease;
-    /* Removed transform: scaleX(-1); as requested */
-  }
-  
-  .mobile-roadmap-panda:active {
-    animation: none;
-    transform: scale(1.05) rotate(2deg);
   }
   
   /* 5. Mobile How To Buy Section */
@@ -1156,7 +1101,6 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     height: 430px; 
     top: 43%;
     left: 45%;
-    /* Exact transform requested */
     transform: translate(-50%, -50%) rotate(-90deg) scaleX(-1);
     z-index: 0;
     object-fit: fill;
@@ -1190,7 +1134,7 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
   }
 
   .mobile-how-panel {
-    width: 150px; /* Securely inside drawn border */
+    width: 150px; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1220,21 +1164,13 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     z-index: 6;
   }
   
-  /* Removed scaleX(-1) as requested */
   .mobile-hello-panda {
     position: absolute;
     width: 286.42px; 
     height: 283.07px;
     left: 80px;
     top: 40px;
-    z-index: 5;
-    animation: mobileBodyBounce 5s ease-in-out infinite;
-    transition: transform 0.3s ease;
-  }
-  
-  .mobile-hello-panda:active {
-    animation: none;
-    transform: scale(1.05) rotate(-2deg);
+    z-index: 5; 
   }
 
   .mobile-hello {
@@ -1244,14 +1180,7 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     left: 0px;
     top: 0px;
     transform: rotate(-10deg);
-    z-index: 6;
-    animation: mobileBubbleFloat 3s ease-in-out infinite;
-    transition: transform 0.3s ease;
-  }
-  
-  .mobile-hello:active {
-    animation: none;
-    transform: scale(1.1) rotate(-12deg);
+    z-index: 6; 
   }
   
   .mobile-community-box {
@@ -1285,7 +1214,7 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 0px 30px 70px;
+    padding: 20px 30px 40px;
     text-align: center;
     box-sizing: border-box;
   }
@@ -1353,15 +1282,109 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
   }
 }
 
-/* Tablet optimization */
+/* ========================================
+   TABLET RESPONSIVE DESIGN (901px - 1280px)
+   Uses the Desktop UI, perfectly reflowed into a vertical 1200x1978 tablet grid.
+======================================== */
 @media (min-width: 901px) and (max-width: 1280px) {
-  .panda-scale-wrap { transform: scale(0.85); }
+  /* Hide other shells */
+  .panda-desktop-shell { display: none; }
+  .panda-mobile-shell { display: none; }
+  
+  /* Enable the unique tablet shell */
+  .panda-tab-shell {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+    background: #fff;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Define the precise 1200x1978 Canvas from Figma */
+  .panda-tab-shell .panda-desktop {
+    width: 1200px !important;
+    height: 1978px !important;
+    background: #ffffff !important;
+  }
+  
+  .panda-tab-shell .desktop-border {
+    width: 1140px !important;
+    height: 1918px !important;
+    left: 30px !important;
+    top: 30px !important;
+    right: auto !important;
+  }
+
+  /* Reflowing the Desktop Absolute Positions into the Tablet Vertical Stack */
+  .panda-tab-shell .center-topic {
+    left: 42px !important;
+    top: 306px !important;
+    transform: scale(0.8) !important;
+    transform-origin: top left !important;
+  }
+
+  .panda-tab-shell .about-box {
+    left: 30px !important;
+    top: 30px !important;
+    transform: scale(1) !important;
+  }
+
+  .panda-tab-shell .tokenomics-box {
+    left: 786px !important;
+    right: auto !important;
+    top: 821px !important;
+    transform: scale(1.5) !important;
+    transform-origin: top left !important;
+  }
+
+  .panda-tab-shell .panda-barrel {
+    right: auto !important;
+    left: 16px !important;
+    top: 560px !important;
+    transform: scale(0.8) !important;
+    z-index: 12 !important
+  }
+
+  .panda-tab-shell .roadmap-box {
+    left: 565px !important;
+    top: 70px !important;
+    transform: scale(0.95) !important;
+    transform-origin: top left !important;
+  }
+
+  .panda-tab-shell .join-box {
+    left: 90px !important;
+    right: auto !important;
+    top: 860px !important;
+    height: 900px !important;
+    transform: scale(1) !important;
+  }
+  
+  .panda-tab-shell .panda-leg{
+    margin-top: 680px;
+    left: 270px;
+    z-index: 10 !important;
+  }
+
+  .panda-tab-shell .how-box {
+    left: 46px !important;
+    top: 1225px !important;
+    transform: scale(1) !important;
+  }
+
+  .panda-tab-shell .buy-box {
+    left: 40px !important;
+    top: 1492px !important;
+    transform: scale(0.9) !important; 
+    transform-origin: top left !important;
+  }
+
 }
 
 /* Performance & Accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .about-panda-top, .panda-lying, .panda-leg, .panda-bottom, .hello-bubble, .buy-circle img,
-  .mobile-about-panda, .mobile-tokenomics-leg, .mobile-roadmap-panda, .mobile-hello-panda, .mobile-hello {
+  .about-panda-top, .panda-lying, .panda-leg, .panda-bottom, .hello-bubble, .buy-circle img {
     animation: none !important;
   }
 }
