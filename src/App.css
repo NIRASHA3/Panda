@@ -1,5 +1,5 @@
 /* ========================================
-GLOBAL RESET & BASE
+   GLOBAL RESET & BASE
 ======================================== */
 html, body {
   margin: 0;
@@ -7,7 +7,7 @@ html, body {
   width: 100%;
   height: 100%;
   background: #fff;
-  overflow: hidden;
+  overflow-x: hidden; /* Changed from overflow: hidden to allow vertical scrolling */
 }
 
 #root {
@@ -16,7 +16,7 @@ html, body {
 }
 
 /* ========================================
-PROFESSIONAL PANDA LIMB ANIMATIONS
+   PROFESSIONAL PANDA LIMB ANIMATIONS
 ======================================== */
 @keyframes headTilt {
   0%, 100% { transform: rotate(0deg); }
@@ -55,16 +55,15 @@ PROFESSIONAL PANDA LIMB ANIMATIONS
 }
 
 /* ========================================
-LAYOUT & CONTAINER STYLES
+   LAYOUT & CONTAINER STYLES
 ======================================== */
 .panda-page {
   width: 100%;
-  height: 100vh;
   background: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  /* Removed height: 100vh and overflow: hidden so content can scroll naturally */
 }
 
 .panda-desktop-shell {
@@ -73,15 +72,7 @@ LAYOUT & CONTAINER STYLES
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-}
-
-.panda-tab-shell {
-  display: none;
-}
-
-.panda-mobile-shell {
-  display: none;
+  overflow: hidden; /* Desktop remains fixed and unscrollable */
 }
 
 .panda-scale-wrap {
@@ -109,7 +100,7 @@ LAYOUT & CONTAINER STYLES
 }
 
 /* ========================================
-TYPOGRAPHY & TITLES (DESKTOP)
+   TYPOGRAPHY & TITLES (DESKTOP)
 ======================================== */
 .title {
   font-family: 'Rampart One', serif;
@@ -184,7 +175,7 @@ TYPOGRAPHY & TITLES (DESKTOP)
 }
 
 /* ========================================
-ABOUT SECTION (DESKTOP)
+   ABOUT SECTION (DESKTOP)
 ======================================== */
 .about-box {
   position: absolute;
@@ -304,7 +295,7 @@ ABOUT SECTION (DESKTOP)
 .panda-barrel:hover { transform: scale(1.05) rotate(2deg); }
 
 /* ========================================
-TOKENOMICS SECTION (DESKTOP)
+   TOKENOMICS SECTION (DESKTOP)
 ======================================== */
 .tokenomics-box {
   position: absolute;
@@ -384,7 +375,7 @@ TOKENOMICS SECTION (DESKTOP)
 }
 
 /* ========================================
-CENTER TOPIC SECTION (DESKTOP)
+   CENTER TOPIC SECTION (DESKTOP)
 ======================================== */
 .center-topic {
   position: absolute;
@@ -417,7 +408,7 @@ CENTER TOPIC SECTION (DESKTOP)
 }
 
 /* ========================================
-JOIN COMMUNITY SECTION (DESKTOP)
+   JOIN COMMUNITY SECTION (DESKTOP)
 ======================================== */
 .join-box {
   position: absolute;
@@ -508,7 +499,7 @@ JOIN COMMUNITY SECTION (DESKTOP)
 .social-row img { width: 42px; height: 40px; object-fit: contain; pointer-events: none; }
 
 /* ========================================
-ROADMAP SECTION (DESKTOP)
+   ROADMAP SECTION (DESKTOP)
 ======================================== */
 .roadmap-box {
   position: absolute;
@@ -574,7 +565,7 @@ ROADMAP SECTION (DESKTOP)
 .panda-leg:hover { animation: none; transform: rotate(-8deg) scale(1.15); }
 
 /* ========================================
-HOW TO BUY SECTION (DESKTOP)
+   HOW TO BUY SECTION (DESKTOP)
 ======================================== */
 .how-box {
   position: absolute;
@@ -610,7 +601,7 @@ HOW TO BUY SECTION (DESKTOP)
 .how-arrow-2 { left: 422px; top: 140px; width: 40px; }
 
 /* ========================================
-BUY NOW SECTION (DESKTOP)
+   BUY NOW SECTION (DESKTOP)
 ======================================== */
 .buy-box {
   position: absolute;
@@ -694,23 +685,18 @@ BUY NOW SECTION (DESKTOP)
 .buy-circle img:hover { animation: none; transform: scale(1.08); filter: drop-shadow(0 10px 30px rgba(0,0,0,0.25)); }
 
 /* ========================================
-MOBILE RESPONSIVE DESIGN - STRICT 414px
+   MOBILE RESPONSIVE DESIGN - STRICT 414px
 ======================================== */
 @media (max-width: 900px) {
   .panda-page {
     display: block;
-    overflow-y: auto;
-    overflow-x: hidden;
-    min-height: auto;
+    min-height: 100vh;
     background: #fff;
   }
   
-  .panda-desktop-shell { display: none; }
-  .panda-tab-shell { display: none; }
-  
   .panda-mobile-shell {
     display: block;
-    width: 414px;
+    width: 100%; /* Changed from 414px to 100% to allow proper offset alignment on narrow screens */
     margin: 0 auto;
     min-height: 100vh;
     background: #fff;
@@ -783,7 +769,7 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     letter-spacing: 0.1em;
     z-index: 2;
     margin: 0;
-    color: #000000 !important; /* Force explicit black color */
+    color: #000000 !important;
   }
   
   .mobile-buy-bubble {
@@ -812,7 +798,7 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
   .mobile-about-box {
     position: relative;
     width: 414px;
-    height: 750px; /* Constrained height */
+    height: 750px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -825,7 +811,6 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     height: 429px; 
     top: 50%;
     left: 50%;
-    /* Apply exact transform requested */
     transform: translate(-50%, -50%) rotate(90deg) scaleX(-1);
     z-index: 0;
     object-fit: fill;
@@ -867,7 +852,7 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
   }
 
   .mobile-about-content {
-    width: 263px; /* Strictly inside drawn borders */
+    width: 263px;
     height:384px;
     text-align: center;
     margin-top: 30px;
@@ -922,7 +907,7 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
   
   .mobile-tokenomics-frame {
     position: absolute;
-    inset: 5px; /* Creates the border */
+    inset: 5px;
     background: #fff;
     clip-path: polygon(0% 0%, 100% 0%, 100% 85%, 85% 100%, 0% 100%);
     display: flex;
@@ -930,7 +915,6 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     align-items: center;
   }
   
-  /* Tokenomics vertical title inheriting main title class properties */
   .mobile-vertical-title {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
@@ -943,7 +927,7 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
 .mobile-tokenomics-panel {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Adjust this to control the vertical space between the staggered items */
+    gap: 10px;
     width: 100%;
     box-sizing: border-box;
   }
@@ -951,18 +935,16 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
   .mobile-stat { 
     display: flex; 
     flex-direction: column; 
-    align-items: center; /* Keeps the text perfectly centered inside its own block */
-    text-align: center;  /* Keeps the text perfectly centered inside its own block */
-    width: fit-content;          /* Restricts the block to half the screen width */
+    align-items: center; 
+    text-align: center;  
+    width: fit-content;          
     gap: 8px; 
   }
 
-  /* Pushes the entire block to the left half of the screen */
   .mobile-stat.align-left { 
     align-self: flex-start; 
   }
 
-  /* Pushes the entire block to the right half of the screen */
   .mobile-stat.align-right { 
     align-self: flex-end; 
   }
@@ -974,16 +956,16 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     line-height: 1.1;
     padding: 0; 
     margin: 0;
-    margin-right: 20px; /* Ensures no unintended left margin */  
+    margin-right: 20px;  
   }
-  /* Tokenomics Leg Applied Properly */
+  
   .mobile-tokenomics-leg {
     position: absolute;
     bottom: -100px;
     right: -30px;
     width: 150px;
     z-index: 10;
-    transform: rotate(240deg); /* Adjusted to mimic kick animation from corner */
+    transform: rotate(240deg); 
   }
 
   /* 4. Mobile Roadmap Section */
@@ -1031,7 +1013,6 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     text-align: right;
   }
   
-  /* Constrain absolute positioning safely inside drawn roadmap lines */
   .mobile-phase-1 {
     top: 10px;
     left: 30px; 
@@ -1067,7 +1048,6 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     color: #000;
   }
   
-  /* Presale left aligned touching the left edge */
   .mobile-phase-1 .presale-text {
     text-align: left;
     margin-top: 10px;
@@ -1250,13 +1230,13 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
   .mobile-social-row button { background: none; border: none; padding: 0; cursor: pointer; }
   .social-row img { width: 52px; height: 50px; object-fit: contain; pointer-events: none; }
   
-.mobile-join-panda {
-  position: absolute !important;
-  right: -40px !important;
-  bottom: -20px !important; 
-  width: 240px !important; 
-  z-index: 10 !important;
-}
+  .mobile-join-panda {
+    position: absolute !important;
+    right: -40px !important;
+    bottom: -20px !important; 
+    width: 240px !important; 
+    z-index: 10 !important;
+  }
   
   .mobile-join-panda:active {
     transform: scale(1.05) translateX(-5px);
@@ -1282,14 +1262,14 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
 
 /* ========================================
    TABLET RESPONSIVE DESIGN (901px - 1280px)
-   Uses the Desktop UI, perfectly reflowed into a vertical 1200x1978 tablet grid.
 ======================================== */
 @media (min-width: 901px) and (max-width: 1280px) {
-  /* Hide other shells */
-  .panda-desktop-shell { display: none; }
-  .panda-mobile-shell { display: none; }
-  
-  /* Enable the unique tablet shell */
+  .panda-page {
+    display: block;
+    min-height: 100vh;
+    background: #fff;
+  }
+
   .panda-tab-shell {
     display: block;
     width: 100%;
@@ -1299,7 +1279,6 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     overflow-x: hidden;
   }
 
-  /* Define the precise 1200x1978 Canvas from Figma */
   .panda-tab-shell .panda-desktop {
     width: 1200px !important;
     height: 1978px !important;
@@ -1314,7 +1293,6 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     right: auto !important;
   }
 
-  /* Reflowing the Desktop Absolute Positions into the Tablet Vertical Stack */
   .panda-tab-shell .center-topic {
     left: 42px !important;
     top: 306px !important;
@@ -1377,10 +1355,11 @@ MOBILE RESPONSIVE DESIGN - STRICT 414px
     transform: scale(0.9) !important; 
     transform-origin: top left !important;
   }
-
 }
 
-/* Performance & Accessibility */
+/* ========================================
+   ACCESSIBILITY & PERFORMANCE
+======================================== */
 @media (prefers-reduced-motion: reduce) {
   .about-panda-top, .panda-lying, .panda-leg, .panda-bottom, .hello-bubble, .buy-circle img {
     animation: none !important;
