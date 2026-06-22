@@ -21,7 +21,7 @@ export function useResponsiveLayout() {
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      if (width <= 900) {
+      if (width <= 700) {
         // Mobile Layout: Cap scale at 1.5x to prevent massive zoomed elements on wide phones
         setLayoutMode('mobile');
         const newScale = Math.min(width / MOBILE_WIDTH, 1.5);

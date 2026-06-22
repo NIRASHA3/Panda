@@ -687,7 +687,7 @@ html, body {
 /* ========================================
    MOBILE RESPONSIVE DESIGN - STRICT 414px
 ======================================== */
-@media (max-width: 900px) {
+@media (max-width: 700px) {
   .panda-page {
     display: block;
     min-height: 100vh;
@@ -1263,7 +1263,7 @@ html, body {
 /* ========================================
    TABLET RESPONSIVE DESIGN (901px - 1280px)
 ======================================== */
-@media (min-width: 901px) and (max-width: 1280px) {
+@media (min-width: 701px) and (max-width: 1280px) {
   .panda-page {
     display: block;
     min-height: 100vh;

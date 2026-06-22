@@ -25,9 +25,9 @@ A fully responsive, highly interactive React application built for the Panda Tok
    cd Panda
 
 2. Install dependencies:
-npm install
+   npm install
 
 3. Start the development server:
-npm start
+   npm start
 
 The app will automatically open in your browser at http://localhost:3000.
