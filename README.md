@@ -22,7 +22,6 @@ A fully responsive, highly interactive React application built for the Panda Tok
 
 1. **Clone the repository:**
    git clone [https://github.com/NIRASHA3/Panda.git](https://github.com/NIRASHA3/Panda.git)
-   cd Panda
 
 2. Install dependencies:
    npm install
